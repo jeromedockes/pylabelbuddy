@@ -4,7 +4,7 @@ import tkinter.ttk
 import tkinter.filedialog
 import tkinter.messagebox
 
-from labelbuddy import _database
+from labelbuddy import _database, _utils
 
 
 class DatasetManager(tk.Frame):
@@ -131,11 +131,7 @@ class DatasetManager(tk.Frame):
         )
         if not file_name:
             return
-        top = self.winfo_toplevel()
-        x, y = top.winfo_x(), top.winfo_y()
-        w, h = top.winfo_width(), top.winfo_height()
-        progress_display = tk.Toplevel()
-        progress_display.geometry(f"+{x + w // 3}+{y + h // 3}")
+        progress_display = _utils.centered_toplevel(self)
         tk.Label(
             progress_display, text="Importing documents ...", padx=30, pady=10
         ).grid(row=0, column=0, sticky="NEW")

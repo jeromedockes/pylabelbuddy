@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from labelbuddy import _label_buddy
+from labelbuddy import _label_buddy, _database
 
 
 def test_label_buddy(root, tmp_path, monkeypatch):
@@ -25,6 +25,23 @@ def test_label_buddy(root, tmp_path, monkeypatch):
     mb_mock.showinfo.assert_called_once()
     buddy._go_to_doc_in_browser()
     wb_mock.assert_called_once()
+    base_offset = _database.get_app_global_parameters().get(
+        "font_size_offset", 0
+    )
+    dialog, plus_minus = buddy._set_font()
+    for i in range(7):
+        plus_minus._increase_font()
+    new_offset = _database.get_app_global_parameters().get(
+        "font_size_offset", 0
+    )
+    assert new_offset == base_offset + 7
+    for i in range(3):
+        plus_minus._decrease_font()
+    new_offset = _database.get_app_global_parameters().get(
+        "font_size_offset", 0
+    )
+    assert new_offset == base_offset + 4
+    dialog.destroy()
     buddy._store_geometry_and_close()
     exit_mock = MagicMock()
     exit_mock.side_effect = Exception("exiting")

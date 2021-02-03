@@ -4,14 +4,6 @@ from labelbuddy._searchable_text import SearchableText
 from labelbuddy._scrollable_frame import ScrollableFrame
 
 
-def _bold_font():
-    if not hasattr(_bold_font, "bold_font"):
-        bold_font = tk.font.nametofont("TkFixedFont").copy()
-        bold_font.config(weight="bold")
-        _bold_font.bold_font = bold_font
-    return _bold_font.bold_font
-
-
 class LabelChoices(tk.Frame):
     def __init__(self, parent, annotations_manager, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
@@ -210,7 +202,7 @@ class Annotator(tk.Frame):
         info = self.labelled_regions[region_id]
         self.label_choices.selected_label.set(info["label"])
         self.text.text.tag_configure(
-            region_id, relief=tk.RAISED, borderwidth=4, font=_bold_font()
+            region_id, relief=tk.RAISED, borderwidth=4, font="BoldFixedFont"
         )
         self._set_selection_button_states()
 
