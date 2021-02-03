@@ -32,13 +32,13 @@ def test_annotator(example_text, root):
         list(annotator.labelled_regions.keys())[0]
     ]
     assert lregion["label"] == "label 1"
-    label, start, end = annotations_manager.add_annotation.call_args.args
+    label, start, end = annotations_manager.add_annotation.call_args[0]
     assert label == "label 1"
     assert example_text[start:end] == "Nunc"
 
     annotator.label_choices.selected_label.set("label 2")
     annotator._set_label_for_selection()
-    assert annotations_manager.update_annotation_label.call_args.args == (
+    assert annotations_manager.update_annotation_label.call_args[0] == (
         "1",
         "label 2",
     )
@@ -60,7 +60,7 @@ def test_annotator(example_text, root):
     assert annotator.active_labelled_region == "2"
     annotator._delete_active_region()
     assert annotator.labelled_regions == {}
-    assert annotations_manager.delete_annotation.call_args.args == ("2",)
+    assert annotations_manager.delete_annotation.call_args[0] == ("2",)
     annotations_manager.existing_regions.return_value = [(3, "label 3", 0, 5)]
     annotations_manager.label_colors = {
         "label 3": "#112233",

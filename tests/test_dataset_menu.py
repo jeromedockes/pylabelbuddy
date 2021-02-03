@@ -59,7 +59,7 @@ def test_documents_list(root, example_labels):
     doc_list.go_to_annotations()
     assert doc_list.requested_doc_id == 39
     doc_list.delete_selection()
-    assert manager.delete_docs.call_args.args == ([39],)
+    assert manager.delete_docs.call_args[0] == ([39],)
     doc_list.prev_page()
     assert doc_list.offset == 4
     doc_list.first_page()
@@ -90,12 +90,12 @@ def test_labels_list(root, example_labels, monkeypatch):
     lab_list._update_button_states()
     assert lab_list.delete_button["state"] == "normal"
     lab_list._set_color_for_selection()
-    assert manager.set_label_color.call_args.args == (
+    assert manager.set_label_color.call_args[0] == (
         labels[1]["id"],
         "#010203",
     )
     lab_list.delete_selection()
-    assert manager.delete_labels.call_args.args == (
+    assert manager.delete_labels.call_args[0] == (
         [labels[1]["id"], labels[3]["id"]],
     )
     manager.get_labels.side_effect = lambda *args: []

@@ -8,7 +8,7 @@ def test_export_menu(root):
     ie_menu.export_menu.change_database()
     assert dataset.suggest_approver_name.call_count == 2
     ie_menu.export_menu._export()
-    assert dataset.export_documents.call_args.kwargs["labelled_only"]
+    assert dataset.export_documents.call_args[1]["labelled_only"]
     ie_menu.export_menu.labelled_only.set(False)
     ie_menu.export_menu._export()
-    assert not dataset.export_documents.call_args.kwargs["labelled_only"]
+    assert not dataset.export_documents.call_args[1]["labelled_only"]
