@@ -87,7 +87,7 @@ class ClosingConnection:
 
 
 def get_connection():
-    con = ClosingConnection(sqlite3.connect(get_db_path()))
+    con = ClosingConnection(sqlite3.connect(str(get_db_path())))
     con.execute("PRAGMA foreign_keys = 1")
     con.connection.row_factory = sqlite3.Row
     _create_database(con)
