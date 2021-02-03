@@ -177,6 +177,8 @@ class DatasetManager(tk.Frame):
         )
 
     def set_label_color(self, label_id, new_color):
+        if not new_color:
+            return
         with self.connection:
             self.connection.execute(
                 "update label set color = ? where id = ?",
