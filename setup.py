@@ -31,5 +31,5 @@ setup(
     maintainer_email="jerome@dockes.org",
     license="BSD 3-Clause License",
     classifiers=["Programming Language :: Python :: 3"],
-    url="https://github.com/jeromedockes/labelbuddy"
+    url="https://github.com/jeromedockes/labelbuddy",
 )

@@ -234,14 +234,10 @@ def read_json_docs(file_path):
     return all_docs
 
 
-def export_annotations(
-    output_file, labelled_docs_only=True, approver=None
-):
+def export_annotations(output_file, labelled_docs_only=True, approver=None):
     con = get_connection()
     if labelled_docs_only:
-        docs = con.execute(
-            "select id from labelled_document order by id"
-        )
+        docs = con.execute("select id from labelled_document order by id")
     else:
         docs = con.execute("select id from document order by id")
     n_docs, n_annotations = 0, 0

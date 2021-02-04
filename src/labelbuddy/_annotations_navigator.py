@@ -106,8 +106,9 @@ class AnnotationsNavigator(tk.Frame):
         if self.annotations_manager.current_doc_id is None:
             if not hasattr(self, "no_docs_label"):
                 self.no_docs_label = tk.Label(
-                    self, text="No documents in database\n\n"
-                    "Go to Import / Export\nto import documents"
+                    self,
+                    text="No documents in database\n\n"
+                    "Go to Import / Export\nto import documents",
                 )
                 self.no_docs_label.grid(
                     column=0, row=0, rowspan=2, columnspan=2, sticky="NSWE"
