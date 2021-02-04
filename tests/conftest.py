@@ -1,3 +1,4 @@
+import os
 import random
 import csv
 import json
@@ -5,6 +6,9 @@ from unittest.mock import MagicMock
 import tkinter as tk
 
 import pytest
+
+
+os.environ["DISPLAY"] = ":0.0"
 
 
 @pytest.fixture(scope="function")

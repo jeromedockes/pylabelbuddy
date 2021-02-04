@@ -79,3 +79,7 @@ Please report bugs by opening an issue in
 
 To run the tests we need to `pip3 install pytest`, then from the root of the
 package: `pytest tests/`.
+or if you have `tox` installed:
+```
+tox
+```
