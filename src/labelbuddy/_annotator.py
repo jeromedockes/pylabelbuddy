@@ -202,7 +202,10 @@ class Annotator(tk.Frame):
         info = self.labelled_regions[region_id]
         self.label_choices.selected_label.set(info["label"])
         self.text.text.tag_configure(
-            region_id, relief=tk.RAISED, borderwidth=4, font="BoldFixedFont"
+            region_id,
+            relief=tk.RAISED,
+            borderwidth=4,
+            font="BuddySelectedFont",
         )
         self._set_selection_button_states()
 

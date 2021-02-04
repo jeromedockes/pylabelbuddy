@@ -14,10 +14,10 @@ from labelbuddy._dataset_manager import DatasetManager
 from labelbuddy import _utils
 
 _FONT_NAMES = [
+    "BuddyTextFont",
+    "BuddySelectedFont",
     "TkFixedFont",
     "TkDefaultFont",
-    "BoldFixedFont",
-    "BoldDefaultFont",
     "TkTextFont",
     "TkMenuFont",
     "TkHeadingFont",
@@ -134,12 +134,18 @@ class LabelBuddy(tk.Tk):
 
     def _setup_fonts(self):
         self.fonts = {}
-        for font_name in ["FixedFont", "DefaultFont"]:
-            font = tk.font.nametofont(f"Tk{font_name}")
-            bf_name = f"Bold{font_name}"
-            bf = tk.font.Font(font=font, name=bf_name)
-            bf.config(weight="bold")
-            self.fonts[bf_name] = bf
+        text_font = tk.font.nametofont("TkTextFont")
+        buddy_text = tk.font.Font(font=text_font, name="BuddyTextFont")
+        has_deja = "DejaVu Serif" in tk.font.families()
+        inc = 2 if has_deja else 4
+        fam = "DejaVu Serif" if has_deja else "Times"
+        buddy_text.config(family=fam, size=buddy_text.actual()["size"] + inc)
+        self.fonts["BuddyTextFont"] = buddy_text
+        selected_text = tk.font.Font(font=buddy_text, name="BuddySelectedFont")
+        if has_deja:
+            selected_text.config(slant="italic")
+        self.fonts["BuddySelectedFont"] = selected_text
+
         base_offset = _database.get_app_global_parameters().get(
             "font_size_offset", 0
         )

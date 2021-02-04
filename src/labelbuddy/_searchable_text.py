@@ -22,7 +22,9 @@ class SearchableText(tk.Frame):
     def __init__(self, parent, content, *args, found_tag="sel", **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.found_tag = found_tag
-        self.text = tk.scrolledtext.ScrolledText(self, wrap="word")
+        self.text = tk.scrolledtext.ScrolledText(
+            self, wrap="word", font="BuddyTextFont"
+        )
         # self.text.bind("<Key>", lambda e: "break")
         self.text["state"] = "disabled"
         if self.found_tag != "sel":
