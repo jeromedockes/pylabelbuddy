@@ -19,16 +19,18 @@ class SearchBox(tk.Frame):
 
 
 class SearchableText(tk.Frame):
-    def __init__(self, parent, content, *args, found_tag="sel", **kwargs):
+    def __init__(self, parent, content, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
-        self.found_tag = found_tag
+        self.found_tag = "found"
         self.text = tk.scrolledtext.ScrolledText(
             self, wrap="word", font="BuddyTextFont"
         )
         # self.text.bind("<Key>", lambda e: "break")
         self.text["state"] = "disabled"
-        if self.found_tag != "sel":
-            self.text.tag_configure(self.found_tag, background="yellow")
+        self.text.tag_configure(
+            self.found_tag,
+            background=self.text.tag_cget("sel", "background"),
+        )
         self.search_box = SearchBox(self)
 
         self.search_box.search_string.trace("w", self._start_search)
@@ -47,6 +49,7 @@ class SearchableText(tk.Frame):
         self.search_box.entry_box.bind("<Control-u>", self._page_up)
         self.search_box.entry_box.bind("<Return>", self._search_next)
         self.search_box.entry_box.bind("<Shift-Return>", self._search_prev)
+        self.text.bind("<<Selection>>", self._clear_found, add=True)
 
         self.text.grid(row=0, column=0, sticky="NSEW")
         self.search_box.grid(row=1, column=0, sticky="EW")
@@ -75,9 +78,14 @@ class SearchableText(tk.Frame):
         self.text.mark_set("match", "match - 1c")
         self._start_search(forward=False)
 
+    def _clear_found(self, *args):
+        if self.text.tag_ranges("sel") != self.text.tag_ranges(self.found_tag):
+            self.text.tag_remove(self.found_tag, "1.0", tk.END)
+
     def _start_search(self, forward=True, *args):
         self.event_generate("<<Searching>>")
         self.text.tag_remove(self.found_tag, "1.0", tk.END)
+        self.text.tag_remove("sel", "1.0", tk.END)
         if forward:
             search_from = self.text.index("@0,0")
         else:
@@ -105,6 +113,7 @@ class SearchableText(tk.Frame):
         self.text.tag_add(
             self.found_tag, match, f"{match} + {match_len.get()} c"
         )
+        self.text.tag_add("sel", match, f"{match} + {match_len.get()} c")
         self.text.see(match)
         self.text.mark_set("match", match)
 

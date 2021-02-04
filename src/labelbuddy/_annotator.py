@@ -83,7 +83,7 @@ class Annotator(tk.Frame):
 
         self.text.text.bind("<Button-1>", self._deactivate_region)
         self.text.bind("<<Searching>>", self._deactivate_region)
-        self.text.text.bind("<<Selection>>", self._set_selection_button_states)
+        self.text.text.bind("<<Selection>>", self._set_selection_button_states, add=True)
         self.label_choices.selected_label.trace(
             "w", self._set_label_for_selection
         )
