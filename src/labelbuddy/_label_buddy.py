@@ -75,9 +75,11 @@ class _FontSizeDialog(tk.Frame):
 class LabelBuddy(tk.Tk):
     def __init__(self, db_path, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.db_path = db_path
         _database.set_db_path(db_path)
-
+        self.db_path = _database.get_db_path()
+        _database.set_app_global_parameter(
+            "last_opened_database", str(db_path)
+        )
         self._setup_fonts()
         self.dataset_manager = DatasetManager(self)
         self.annotations_manager = AnnotationsManager(self)
@@ -225,5 +227,5 @@ def start_label_buddy(args=None):
     if args.version:
         print(f"labelbuddy version {__version__}")
         sys.exit(0)
-    buddy = LabelBuddy(args.database)
+    buddy = LabelBuddy(args.database or default_path)
     buddy.mainloop()
