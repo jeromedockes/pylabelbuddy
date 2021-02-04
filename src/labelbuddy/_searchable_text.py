@@ -12,6 +12,10 @@ class SearchBox(tk.Frame):
         self.entry_box.pack(side="left")
         self.next_button.pack(side="left")
         self.prev_button.pack(side="left")
+        self.entry_box.bind("<Control-KeyRelease-f>", self._select_all_search)
+
+    def _select_all_search(self, *args):
+        self.entry_box.selection_range(0, tk.END)
 
 
 class SearchableText(tk.Frame):
@@ -31,6 +35,14 @@ class SearchableText(tk.Frame):
         self.text.bind("<Control-s>", self._focus_and_search)
         self.text.bind("<Control-f>", self._focus_and_search)
         self.text.bind("<slash>", self._focus_and_search)
+        self.search_box.entry_box.bind("<Down>", self._line_down)
+        self.search_box.entry_box.bind("<Control-n>", self._line_down)
+        self.search_box.entry_box.bind("<Control-j>", self._line_down)
+        self.search_box.entry_box.bind("<Up>", self._line_up)
+        self.search_box.entry_box.bind("<Control-p>", self._line_up)
+        self.search_box.entry_box.bind("<Control-k>", self._line_up)
+        self.search_box.entry_box.bind("<Control-d>", self._page_down)
+        self.search_box.entry_box.bind("<Control-u>", self._page_up)
         self.search_box.entry_box.bind("<Return>", self._search_next)
         self.search_box.entry_box.bind("<Shift-Return>", self._search_prev)
 
@@ -84,7 +96,7 @@ class SearchableText(tk.Frame):
             count=match_len,
             nocase=True,
             forwards=forward,
-            backwards=(not forward)
+            backwards=(not forward),
         )
         if not match:
             return
@@ -93,6 +105,18 @@ class SearchableText(tk.Frame):
         )
         self.text.see(match)
         self.text.mark_set("match", match)
+
+    def _line_up(self, *args):
+        self.text.yview_scroll(-1, "units")
+
+    def _line_down(self, *args):
+        self.text.yview_scroll(1, "units")
+
+    def _page_up(self, *args):
+        self.text.yview_scroll(-1, "pages")
+
+    def _page_down(self, *args):
+        self.text.yview_scroll(1, "pages")
 
     def _focus_and_search(self, *args):
         self.search_box.entry_box.focus_set()
