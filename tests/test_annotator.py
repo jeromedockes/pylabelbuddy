@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from labelbuddy import _annotator
+from pylabelbuddy import _annotator
 
 
 def test_annotator(example_text, root):

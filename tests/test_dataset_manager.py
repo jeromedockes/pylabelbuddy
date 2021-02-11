@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 import pytest
 
-from labelbuddy import _dataset_manager, _database
+from pylabelbuddy import _dataset_manager, _database
 
 
 def fill_db(data_dir):

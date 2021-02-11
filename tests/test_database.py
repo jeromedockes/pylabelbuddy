@@ -1,10 +1,10 @@
 import json
-from labelbuddy import _database
+from pylabelbuddy import _database
 
 
 def test_get_db_path(lb_dir):
     db_path = _database.get_default_db_path()
-    assert db_path == lb_dir.joinpath("labelbuddy-data.sqlite3")
+    assert db_path == lb_dir.joinpath("pylabelbuddy-data.sqlite3")
     new_db = lb_dir.joinpath("newdb.sql")
     _database.set_app_global_parameter("last_opened_database", str(new_db))
     db_path = _database.get_default_db_path()

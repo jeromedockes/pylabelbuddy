@@ -1,4 +1,4 @@
-from labelbuddy import _annotations_manager, _database
+from pylabelbuddy import _annotations_manager, _database
 
 
 def fill_db(data_dir):

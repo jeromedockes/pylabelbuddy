@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.font
-from labelbuddy._searchable_text import SearchableText
-from labelbuddy._scrollable_frame import ScrollableFrame
+from pylabelbuddy._searchable_text import SearchableText
+from pylabelbuddy._scrollable_frame import ScrollableFrame
 
 
 class LabelChoices(tk.Frame):

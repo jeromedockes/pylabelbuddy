@@ -1,7 +1,7 @@
 import sqlite3
 import tkinter as tk
 
-from labelbuddy import _database
+from pylabelbuddy import _database
 
 
 class AnnotationsManager(tk.Frame):

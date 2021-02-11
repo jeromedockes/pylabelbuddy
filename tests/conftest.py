@@ -46,7 +46,7 @@ def prepare_db(data_dir):
 
 
 def fill_db(data_dir):
-    from labelbuddy import _database
+    from pylabelbuddy import _database
 
     _database.add_docs_from_file(data_dir / "docs_1.csv")
     _database.add_labels_from_json(data_dir / "labels_1.json")
@@ -90,13 +90,13 @@ def fake_home(tmp_path, monkeypatch):
 
 @pytest.fixture(scope="function")
 def lb_dir(fake_home):
-    return fake_home.joinpath(".labelbuddy")
+    return fake_home.joinpath(".pylabelbuddy")
 
 
 @pytest.fixture(autouse=True, scope="function")
 def reset_db_path(monkeypatch):
     monkeypatch.delattr(
-        "labelbuddy._database.get_db_path.db_path", raising=False
+        "pylabelbuddy._database.get_db_path.db_path", raising=False
     )
 
 

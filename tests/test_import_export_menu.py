@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock
-from labelbuddy import _import_export_menu
+from pylabelbuddy import _import_export_menu
 
 
 def test_export_menu(root):

@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from labelbuddy import _label_buddy, _database
+from pylabelbuddy import _label_buddy, _database
 
 
 def test_label_buddy(root, tmp_path, monkeypatch):

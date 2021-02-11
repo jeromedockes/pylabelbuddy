@@ -1,4 +1,4 @@
-from labelbuddy import _annotations_notebook
+from pylabelbuddy import _annotations_notebook
 
 
 def test_annotations_notebook(root, annotations_mock, dataset_mock):

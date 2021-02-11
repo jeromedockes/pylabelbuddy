@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock
-from labelbuddy import _dataset_menu
+from pylabelbuddy import _dataset_menu
 
 
 class _DB:

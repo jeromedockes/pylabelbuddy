@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 def get_data_dir():
-    data_dir = Path().home() / ".labelbuddy"
+    data_dir = Path().home() / ".pylabelbuddy"
     data_dir.mkdir(exist_ok=True)
     return data_dir
 
@@ -17,7 +17,7 @@ def get_default_db_path():
     last_opened = get_app_global_parameters().get("last_opened_database", None)
     if last_opened:
         return last_opened
-    return get_data_dir() / "labelbuddy-data.sqlite3"
+    return get_data_dir() / "pylabelbuddy-data.sqlite3"
 
 
 def get_app_global_parameters():

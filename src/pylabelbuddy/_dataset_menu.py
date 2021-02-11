@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.ttk
 import tkinter.colorchooser
 
-from labelbuddy._scrollable_list import ScrollableList
+from pylabelbuddy._scrollable_list import ScrollableList
 
 
 class DocumentsList(tk.Frame):

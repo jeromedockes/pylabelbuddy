@@ -1,10 +1,10 @@
 import tkinter as tk
 import tkinter.ttk
 
-from labelbuddy import _database
-from labelbuddy._annotations_navigator import AnnotationsNavigator
-from labelbuddy._dataset_menu import DatasetMenu
-from labelbuddy._import_export_menu import ImportExportMenu
+from pylabelbuddy import _database
+from pylabelbuddy._annotations_navigator import AnnotationsNavigator
+from pylabelbuddy._dataset_menu import DatasetMenu
+from pylabelbuddy._import_export_menu import ImportExportMenu
 
 
 class AnnotationsNotebook(tk.Frame):

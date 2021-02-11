@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from labelbuddy import _annotations_navigator
+from pylabelbuddy import _annotations_navigator
 
 
 def test_annotations_navigator(root):

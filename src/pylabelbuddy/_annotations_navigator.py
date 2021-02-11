@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from labelbuddy._annotator import Annotator
+from pylabelbuddy._annotator import Annotator
 
 
 class NavBar(tk.Frame):

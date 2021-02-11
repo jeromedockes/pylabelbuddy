@@ -6,12 +6,12 @@ import tkinter.scrolledtext
 import tkinter.filedialog
 import tkinter.messagebox
 
-from labelbuddy import __version__
-from labelbuddy import _database
-from labelbuddy._annotations_notebook import AnnotationsNotebook
-from labelbuddy._annotations_manager import AnnotationsManager
-from labelbuddy._dataset_manager import DatasetManager
-from labelbuddy import _utils
+from pylabelbuddy import __version__
+from pylabelbuddy import _database
+from pylabelbuddy._annotations_notebook import AnnotationsNotebook
+from pylabelbuddy._annotations_manager import AnnotationsManager
+from pylabelbuddy._dataset_manager import DatasetManager
+from pylabelbuddy import _utils
 
 _FONT_NAMES = [
     "BuddyTextFont",
@@ -98,7 +98,7 @@ class LabelBuddy(tk.Tk):
         )
         if stored_geometry:
             self.geometry(stored_geometry)
-        self.title("labelbuddy")
+        self.title("pylabelbuddy")
         icon_path = str(Path(__file__).parent.joinpath("_data", "LB.png"))
         try:
             self.icon = tk.PhotoImage(file=icon_path)
@@ -206,13 +206,13 @@ class LabelBuddy(tk.Tk):
         self.event_generate("<<DatabaseChanged>>")
 
     def _show_about_info(self):
-        msg = f"labelbuddy version {__version__}\nBSD 3-Clause License"
+        msg = f"pylabelbuddy version {__version__}\nBSD 3-Clause License"
         tk.messagebox.showinfo(message=msg)
 
     def _go_to_doc_in_browser(self):
         import webbrowser
 
-        webbrowser.open("https://github.com/jeromedockes/labelbuddy")
+        webbrowser.open("https://github.com/jeromedockes/pylabelbuddy")
 
 
 def start_label_buddy(args=None):
@@ -223,7 +223,7 @@ def start_label_buddy(args=None):
         nargs="?",
         type=str,
         default=None,
-        help=f"Path to labelbuddy database. "
+        help=f"Path to pylabelbuddy database. "
         f"If not provided, {default_path} will be used",
     )
     parser.add_argument(
@@ -231,7 +231,7 @@ def start_label_buddy(args=None):
     )
     args = parser.parse_args(args)
     if args.version:
-        print(f"labelbuddy version {__version__}")
+        print(f"pylabelbuddy version {__version__}")
         sys.exit(0)
     buddy = LabelBuddy(args.database or default_path)
     buddy.mainloop()

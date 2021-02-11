@@ -1,4 +1,4 @@
-from labelbuddy import _searchable_text
+from pylabelbuddy import _searchable_text
 
 
 def test_searchable_text(example_text):

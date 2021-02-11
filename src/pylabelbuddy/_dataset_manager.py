@@ -4,7 +4,7 @@ import tkinter.ttk
 import tkinter.filedialog
 import tkinter.messagebox
 
-from labelbuddy import _database, _utils
+from pylabelbuddy import _database, _utils
 
 
 class DatasetManager(tk.Frame):
