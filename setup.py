@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 
 from pathlib import Path
+import warnings
 
 from setuptools import setup, find_packages
+
+warnings.simplefilter("always", DeprecationWarning)
+warnings.warn(
+    "pylabelbuddy is not maitained anymore. it has been superceded "
+    "by the C++ application labelbuddy: "
+    "https://jeromedockes.github.io/labelbuddy/",
+    DeprecationWarning,
+)
 
 version = (
     Path(__file__)
@@ -11,11 +20,17 @@ version = (
     .strip()
 )
 
-description = "A small application for annotating text"
+description = "DEPRECATED. A small application for annotating text"
+long_description = (
+    "pylabelbuddy is not maitained anymore. it has been superceded "
+    "by the C++ application labelbuddy: "
+    "https://jeromedockes.github.io/labelbuddy/"
+)
 
 setup(
     name="pylabelbuddy",
     description=description,
+    long_description=long_description,
     version=version,
     packages=find_packages("src"),
     package_dir={"": "src"},

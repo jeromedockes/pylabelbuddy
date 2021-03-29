@@ -1,4 +1,13 @@
+import warnings
 from pathlib import Path
+
+warnings.simplefilter("always", DeprecationWarning)
+warnings.warn(
+    "pylabelbuddy is not maitained anymore. it has been superceded "
+    "by the C++ application labelbuddy: "
+    "https://jeromedockes.github.io/labelbuddy/",
+    DeprecationWarning,
+)
 
 __version__ = (
     Path(__file__)
