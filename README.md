@@ -1,3 +1,6 @@
+`pylabelbuddy` is **not maintained anymore**; it has been superceded by the C++ application `labelbuddy`: [https://jeromedockes.github.io/labelbuddy/](https://jeromedockes.github.io/labelbuddy/)
+
+
 # `pylabelbuddy`: a small tool for annotating documents
 
 ## Installation
